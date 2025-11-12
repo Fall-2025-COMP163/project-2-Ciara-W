@@ -236,47 +236,29 @@ class Mage(Player):
         # Should do magic-based damage with bonus
         pass
 
+import random  # make sure this is at the top of your file
+
 class Rogue(Player):
-    """
-    Rogue class - quick and sneaky fighter.
-    Inherits from Player.
-    """
-    
     def __init__(self, name):
-        """
-        Create a rogue with appropriate stats.
-        Rogues should have: medium health, medium strength, medium magic
-        """
         super().__init__(name, "Rogue", 90, 12, 10)
-        # TODO: Call super().__init__() with rogue-appropriate stats
-        # Suggested stats: health=90, strength=12, magic=10
         pass
-        
+
     def attack(self, target):
         """
         Override the basic attack to make it rogue-specific.
         Rogues should have a chance for extra damage (critical hits).
         """
-        damage = self.strength + 3
-        print(f"{self.name} attacks swiftly for {damage} damage!")
-        target.take_damage(damage)
-
-        # TODO: Implement rogue attack
-        # Could add a chance for critical hit (double damage)
-        # Hint: use random.randint(1, 10) and if result <= 3, it's a crit
-        pass
+        crit_chance = random.randint(1, 10)  # gives numbers 1–10
+        if crit_chance <= 3:  # 30% chance
+            damage = self.strength * 2       # double damage for crit
+            print(f"💥 CRITICAL HIT! {self.name} strikes {target.name} for {damage} damage!")
+        else:
+            damage = self.strength + 3
+            print(f"{self.name} attacks swiftly for {damage} damage!")
         
-    def sneak_attack(self, target):
-        """
-        Special rogue ability - guaranteed critical hit.
-        """
-        damage = self.strength + 8
-        print(f"{self.name} performs a SNEAK ATTACK for {damage} damage!")
         target.take_damage(damage)
-
-        # TODO: Implement sneak attack
-        # Should always do critical damage
         pass
+
 
 class Weapon:
     """
