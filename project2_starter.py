@@ -90,11 +90,13 @@ class Character:
         Reduces this character's health by the damage amount.
         Health should never go below 0.
         """
-        if self.health < 0:
-            self.health = 0
-        print(f"{self.name} took {damage} damage. Health: {self.health}")
 
-
+        def take_damage(self, amount):
+            self.health -= amount
+            if self.health < 0:
+                self.health = 0
+            print(f"{self.name} took {amount} damage. Health: {self.health}")
+     
 
 
         # TODO: Implement taking damage
@@ -175,7 +177,7 @@ class Warrior(Player):
         Override the basic attack to make it warrior-specific.
         Warriors should do extra physical damage.
         """
-        damage = self_strength + 7
+        damage = self.strength + 7
         print(f"{self.name} swings the sword for {damage} damage!")
         target.take_damage(damage)
         # TODO: Implement warrior attack
@@ -187,7 +189,7 @@ class Warrior(Player):
         """
         Special warrior ability - a powerful attack that does extra damage.
         """
-        damage = self.strength + 10
+        damage = 20
         print(f"{self.name} uses Power STRIKE for {damage} damage!")
         target.take_damage(damage)
         # TODO: Implement power strike
@@ -228,7 +230,7 @@ class Mage(Player):
         """
 
         def fireball(self, target):
-            damage = self.magic + 10
+            damage = 15
             print(f"{self.name} casts FIREBALL for {damage} damage!")
             target.take_damage(damage)
 
@@ -243,21 +245,22 @@ class Rogue(Player):
         super().__init__(name, "Rogue", 90, 12, 10)
         pass
 
-    def attack(self, target):
-        """
-        Override the basic attack to make it rogue-specific.
-        Rogues should have a chance for extra damage (critical hits).
-        """
-        crit_chance = random.randint(1, 10)  # gives numbers 1–10
-        if crit_chance <= 3:  # 30% chance
-            damage = self.strength * 2       # double damage for crit
-            print(f"💥 CRITICAL HIT! {self.name} strikes {target.name} for {damage} damage!")
-        else:
-            damage = self.strength + 3
-            print(f"{self.name} attacks swiftly for {damage} damage!")
-        
-        target.take_damage(damage)
-        pass
+
+def attack(self, target):
+    """
+    Override the basic attack to make it rogue-specific.
+    Rogues should have a chance for extra damage (critical hits).
+    """
+    crit_chance = random.randint(1, 10)  # gives numbers 1–10
+    if crit_chance <= 3:  # 30% chance
+        damage = self.strength * 2       # double damage for crit
+        print(f"💥 CRITICAL HIT! {self.name} strikes {target.name} for {damage} damage!")
+    else:
+        damage = self.strength + 3
+        print(f"{self.name} attacks swiftly for {damage} damage!")
+
+    target.take_damage(damage)
+
 
 
 class Weapon:
