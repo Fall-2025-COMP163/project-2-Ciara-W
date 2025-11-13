@@ -201,7 +201,7 @@ class Rogue(Player):
         crit_chance = random.randint(1, 10)  # gives numbers 1–10
         if crit_chance <= 3:  # 30% chance
             damage = self.strength * 2       # double damage for crit
-            print(f"💥 CRITICAL HIT! {self.name} strikes {target.name} for {damage} damage!")
+            print(f" CRITICAL HIT! {self.name} strikes {target.name} for {damage} damage!")
         else:
             damage = self.strength + 3
             print(f"{self.name} attacks swiftly for {damage} damage!")
@@ -212,7 +212,7 @@ class Rogue(Player):
         Special rogue ability - powerful surprise attack.
         """
         damage = self.strength * 3
-        print(f"💥 SNEAK ATTACK! {self.name} deals {damage} damage!")
+        print(f" SNEAK ATTACK! {self.name} deals {damage} damage!")
         target.take_damage(damage)
 
 class Weapon:
@@ -251,7 +251,7 @@ if __name__ == "__main__":
     rogue = Rogue("Robin Hood")
     
     # Display their stats
-    print("\n📊 Character Stats:")
+    print("\n Character Stats:")
     warrior.display_stats()
     mage.display_stats()
     rogue.display_stats()
@@ -266,7 +266,7 @@ if __name__ == "__main__":
         dummy_target.health = 100  # Reset dummy health
     
     # Test special abilities
-    print("\n✨ Testing Special Abilities:")
+    print("\n Testing Special Abilities:")
     target1 = Character("Enemy1", 50, 0, 0)
     target2 = Character("Enemy2", 50, 0, 0)
     target3 = Character("Enemy3", 50, 0, 0)
@@ -276,7 +276,7 @@ if __name__ == "__main__":
     rogue.sneak_attack(target3)
     
     # Test composition with weapons
-    print("\n🗡️ Testing Weapon Composition:")
+    print("\n Testing Weapon Composition:")
     sword = Weapon("Iron Sword", 10)
     staff = Weapon("Magic Staff", 15)
     dagger = Weapon("Steel Dagger", 8)
